@@ -10,6 +10,10 @@ class AuthorsController < ApplicationController
   # GET /authors/1
   # GET /authors/1.json
   def show
+    respond_to do |format|
+      format.html {render :show}
+      format.json {render json: @author}
+    end
   end
 
   # GET /authors/new

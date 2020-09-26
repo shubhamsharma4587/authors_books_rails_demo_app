@@ -10,6 +10,10 @@ class BooksController < ApplicationController
   # GET /books/1
   # GET /books/1.json
   def show
+    respond_to do |format|
+      format.html { render :show }
+      format.json { render json: @book }
+    end
   end
 
   # GET /books/new
@@ -76,13 +80,14 @@ class BooksController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_book
-      @book = Book.find(params[:book_id])
-    end
 
-    # Only allow a list of trusted parameters through.
-    def book_params
-      params.require(:book).permit(:book_title, :author_id)
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_book
+    @book = Book.find(params[:book_id])
+  end
+
+  # Only allow a list of trusted parameters through.
+  def book_params
+    params.require(:book).permit(:book_title, :author_id)
+  end
 end
